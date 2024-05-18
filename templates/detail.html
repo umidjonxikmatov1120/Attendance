@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ team.name }} jamoasining davomadi
+{% endblock title %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="card mt-3">
+            <h3 class="m">{{ team.name }} jamoasining davomadi</h3>
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Ism Familiya</th>
+        {% for mark in team.workers.first.marks.all %}
+            <th style="writing-mode:vertical-rl; text-orientation:mixed">
+                {% if today == mark.attendance.date|date:"Y-m-d" %}
+                <small><a href="{% url 'update' mark.attendance.id %}">{{ mark.attendance.date|date:"Y-m-d" }}</a></small>
+                {% else %}
+                <small>{{ mark.attendance.date|date:"Y-m-d" }}</small>
+                {% endif %}
+        </th>
+        {% endfor %}
+      <th scope="col">Last</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for worker in team.workers.all %}
+    <tr>
+      <td>{{ worker.first_name }} {{ worker.last_name }}</td>
+      {% for mark in worker.marks.all %}
+            {% if mark.is_attended %}
+                <td style="height:5px; width:5px; background-color: green;"></td>
+            {% else %}
+                <td style="height:5px; width:5px; background-color: red;"></td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+    {% if is_att_taken %}
+            <a href="#" class="btn btn-danger">Davomad olib bo'lingan</a>
+     {% else %}
+            <a href="{% url 'take' team.id %}" class="btn btn-primary">Davomad olish</a>
+     {% endif %}
+        </div>
+    </div>
+{% endblock content %}
