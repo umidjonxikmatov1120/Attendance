@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}
-  {{attendance.team.name}} jamoasining  bugungi damomadini tahrirlash
+  {{attendance.team.name}} jamoasining  bugungi davomadini tahrirlash
 {% endblock title %}
 
 {% block content %}
     <div class="container mt-3">
         <div class=" mt-3 ">
-            <h3 class="m-3" >{{attendance.team.name}} jamoasining  bugungi damomadini tahrirlash</h3>
+            <h3 class="m-3" >{{attendance.team.name}} jamoasining  bugungi davomadini tahrirlash</h3>
             <form  method="post"> {% csrf_token %}
             <table class="table table-bordered">
                 <thead>
