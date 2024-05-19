@@ -5,6 +5,7 @@
 {% endblock title %}
 
 {% block content %}
+{% now "Y-m-d" as today %}
     <div class="container mt-3">
         <div class="card mt-3">
             <h3 class="m">{{ team.name }} jamoasining davomadi</h3>
@@ -30,9 +31,9 @@
       <td>{{ worker.first_name }} {{ worker.last_name }}</td>
       {% for mark in worker.marks.all %}
             {% if mark.is_attended %}
-                <td style="height:5px; width:5px; background-color: green;"></td>
+                <td style="height:5px; width:5px; background-color: green; text-align: center; font-weight: bold;">B</td>
             {% else %}
-                <td style="height:5px; width:5px; background-color: red;"></td>
+                <td style="height:5px; width:5px; background-color: red; text-align: center; font-weight: bold;">Y</td>
             {% endif %}
         {% endfor %}
     </tr>
